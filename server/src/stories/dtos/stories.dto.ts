@@ -1,5 +1,5 @@
-import { IsString, IsUrl, IsNotEmpty, IsDefined } from 'class-validator';
-import { PartialType } from '@nestjs/mapped-types';
+import { IsString, IsUrl, IsNotEmpty } from 'class-validator';
+import { PartialType } from '@nestjs/swagger';
 
 export class CreateStoryDto {
   @IsString()

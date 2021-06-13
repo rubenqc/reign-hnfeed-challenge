@@ -10,9 +10,12 @@ import {
   Delete,
   ParseIntPipe,
 } from '@nestjs/common';
-import { StoriesService } from '../services/stories.service';
-import { CreateStoryDto, UpdateStoryDto } from '../dtos/stories.dtos';
+import { ApiTags } from '@nestjs/swagger';
 
+import { StoriesService } from '../services/stories.service';
+import { CreateStoryDto, UpdateStoryDto } from '../dtos/stories.dto';
+
+@ApiTags('stories')
 @Controller('stories')
 export class StoriesController {
   constructor(private storiesService: StoriesService) {}

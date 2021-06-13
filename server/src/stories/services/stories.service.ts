@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { Story } from '../entities/story.entity';
-import { CreateStoryDto, UpdateStoryDto } from '../dtos/stories.dtos';
+import { CreateStoryDto, UpdateStoryDto } from '../dtos/stories.dto';
 
 @Injectable()
 export class StoriesService {
