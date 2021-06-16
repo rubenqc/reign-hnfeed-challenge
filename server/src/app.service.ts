@@ -1,16 +1,4 @@
-import { Injectable, Inject } from '@nestjs/common';
-import { ConfigType } from '@nestjs/config';
-import { Db } from 'mongodb';
-import config from './config';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AppService {
-  constructor(
-    @Inject('MONGO') private database: Db,
-    @Inject('STORIES') private stories: any[],
-    @Inject(config.KEY) private configService: ConfigType<typeof config>,
-  ) {}
-  getHello(): string {
-    return 'Hello World!';
-  }
-}
+export class AppService {}

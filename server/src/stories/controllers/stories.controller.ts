@@ -8,10 +8,10 @@ import {
   Put,
   Param,
   Delete,
-  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
+import { MongoIdPipe } from '../../common/mongo-id.pipe';
 import { StoriesService } from '../services/stories.service';
 import { CreateStoryDto, UpdateStoryDto } from '../dtos/stories.dto';
 
@@ -22,13 +22,13 @@ export class StoriesController {
 
   @Get()
   @HttpCode(HttpStatus.OK)
-  getStories(): any {
+  getStories() {
     return this.storiesService.findAll();
   }
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  getStory(@Param('id', ParseIntPipe) id: number): any {
+  getStory(@Param('id', MongoIdPipe) id: string) {
     return this.storiesService.findOne(id);
   }
 
@@ -41,7 +41,7 @@ export class StoriesController {
   @Put(':id')
   @HttpCode(HttpStatus.OK)
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id', MongoIdPipe) id: string,
     @Body() payload: UpdateStoryDto,
   ) {
     return this.storiesService.update(id, payload);
@@ -49,7 +49,7 @@ export class StoriesController {
 
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
-  delete(@Param('id', ParseIntPipe) id: number) {
+  delete(@Param('id', MongoIdPipe) id: string) {
     return this.storiesService.delete(id);
   }
 }

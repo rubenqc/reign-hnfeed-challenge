@@ -24,23 +24,10 @@ import config from './config';
         MONGO_CONNECTION: Joi.string().required(),
       }),
     }),
-    HttpModule,
     StoriesModule,
     DatabaseModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: 'STORIES',
-      useFactory: async (http: HttpService) => {
-        const stories = await http
-          .get('https://hn.algolia.com/api/v1/search_by_date?query=nodejs')
-          .toPromise();
-        return stories.data;
-      },
-      inject: [HttpService],
-    },
-  ],
+  providers: [AppService],
 })
 export class AppModule {}
