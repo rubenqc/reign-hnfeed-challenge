@@ -1,14 +1,14 @@
 FROM node:14.17-alpine As development
 
-WORKDIR /usr/server/src/app
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install --only=development
+RUN yarn install --only=development
 
 COPY . .
 
-RUN npm run build
+RUN yarn build
 
 FROM node:14.17-alpine as production
 
@@ -17,12 +17,12 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY package.json yarn.lock ./
 
-RUN npm install --only=production
+RUN yarn install --only=production
 
 COPY . .
 
-COPY --from=development /usr/src/app/dist ./dist
+COPY --from=development /usr/src/app/build ./build
 
-CMD ["node", "dist/main"]
+CMD ["yarn", "start"]

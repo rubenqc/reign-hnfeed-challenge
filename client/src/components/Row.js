@@ -2,7 +2,7 @@ import {useState} from "react";
 import { BsFillTrashFill } from 'react-icons/bs'
 import moment from 'moment'
 
-const Row = ({_id, story_title, title, url, author, created_at, onDeleteStory = f => f}) => {
+const Row = ({_id, story_title, title, story_url, author, created_at, onDeleteStory = f => f}) => {
 	const [color, setColor] = useState('#fff')
 	const [displayTrash, setDisplayTrash] = useState('none')
 
@@ -42,6 +42,9 @@ const Row = ({_id, story_title, title, url, author, created_at, onDeleteStory = 
 		// any day
 		return moment(date).format('MMM DD')
 	}
+	const openInNewTab = (url) => {
+		window.open(url, '_blank', 'noopener,noreferrer')
+	}
 
 	const style = {
 		row: {
@@ -75,7 +78,7 @@ const Row = ({_id, story_title, title, url, author, created_at, onDeleteStory = 
 	}
 
 	return (
-		<div style={style.row} onMouseOver={() => onMouseOver()} onMouseLeave={() => onMouseLeave()}>
+		<div style={style.row} onMouseOver={() => onMouseOver()} onMouseLeave={() => onMouseLeave()} onClick={() => openInNewTab(story_url)}>
 			<div style={style.leftColumn}>
 				<span style={style.titleTime}>{story_title || title}.</span> <span style={style.author}>- {author} -</span>
 			</div>
