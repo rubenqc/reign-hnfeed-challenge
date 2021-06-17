@@ -47,7 +47,10 @@ describe('StoriesService', () => {
 
   describe('findAll', () => {
     it('calls StoryModel.find and return the result', async () => {
-      storyModel.find.mockResolvedValue('someValue');
+      const mockSort = {
+        sort: () => Promise.resolve('someValue')
+      }
+      storyModel.find.mockImplementation(() => mockSort);
       const result = await storyService.findAll();
       expect(result).toEqual('someValue');
     });
@@ -111,16 +114,6 @@ describe('StoriesService', () => {
     it('calls StoryModel.findByIdAndDelete and return the result', async () => {
       storyModel.findByIdAndDelete.mockResolvedValue('someValue');
       const result = await storyService.delete('someId');
-      expect(result).toEqual('someValue');
-    });
-  });
-
-  describe('loadData', () => {
-    it('calls StoryModel. and return the result', async () => {
-      httpService.get.mockResolvedValue(() => ({
-        toPromise: () => 'someValue',
-      }));
-      const result = await storyService.loadData();
       expect(result).toEqual('someValue');
     });
   });
