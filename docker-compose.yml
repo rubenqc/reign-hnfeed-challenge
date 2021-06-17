@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  server:
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+    ports:
+      - 3001:3001
+    volumes:
+      - /app/node_modules
+      - ./server:/app
+    links:
+      - mongodb
+    networks:
+      - app-network
+    depends_on:
+      mongodb:
+        condition: service_started
+  mongodb:
+    image: mongo:4.4
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - ./mongo_data:/data/db
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
