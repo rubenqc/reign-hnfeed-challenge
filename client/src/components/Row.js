@@ -78,11 +78,11 @@ const Row = ({_id, story_title, title, story_url, author, created_at, onDeleteSt
 	}
 
 	return (
-		<div style={style.row} onMouseOver={() => onMouseOver()} onMouseLeave={() => onMouseLeave()} onClick={() => openInNewTab(story_url)}>
-			<div style={style.leftColumn}>
+		<div style={style.row} onMouseOver={() => onMouseOver()} onMouseLeave={() => onMouseLeave()}>
+			<div style={style.leftColumn} onClick={() => openInNewTab(story_url)}>
 				<span style={style.titleTime}>{story_title || title}.</span> <span style={style.author}>- {author} -</span>
 			</div>
-			<div style={style.middleColumn}>
+			<div style={style.middleColumn} onClick={() => openInNewTab(story_url)}>
 				<span style={style.titleTime}>{formatDate(created_at)}</span>
 			</div>
 			<div style={style.rightColumn}>
