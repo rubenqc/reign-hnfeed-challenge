@@ -24,7 +24,7 @@ export class StoriesService {
   }
 
   findAll() {
-    return this.storyModel.find();
+    return this.storyModel.find().sort('-created_at');
   }
 
   async findOne(id: string) {

@@ -9,7 +9,7 @@ export class StoriesSchedulingService {
 
   constructor(private storiesService: StoriesService) {}
 
-  @Cron(CronExpression.EVERY_MINUTE)
+  @Cron(CronExpression.EVERY_HOUR)
   async log() {
     this.logger.debug('Upload stories: Start');
     const result = await this.storiesService.loadData();
