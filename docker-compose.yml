@@ -7,6 +7,14 @@ services:
       context: ./server
     ports:
       - 3001:3001
+    environment:
+      PORT: 3001
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_DB: hnfeed-store
+      MONGO_PORT: 27017
+      MONGO_HOST: mongodb
+      MONGO_CONNECTION: mongodb
     volumes:
       - /app/node_modules
       - ./server:/app
@@ -25,7 +33,7 @@ services:
       - 3000:3000
     volumes:
       - /app/node_modules
-      - ./cliente:/app
+      - ./client:/app
     networks:
       - app-network
     depends_on:

@@ -23,3 +23,20 @@ docker-compose build
 `docker-compose down` stops the running container.
 
 `docker-compose run --rm bash` runs an interactive shell on the Docker image.
+
+## Helpful Guides
+
+- [Yarn docs](https://yarnpkg.com/en/docs)
+
+### Environment variables - app server
+
+- `PORT`: sets app server port. 
+- `MONGO_INITDB_ROOT_USERNAME`: sets mongodb username.
+- `MONGO_INITDB_ROOT_PASSWORD`: sets mongodb password.
+- `MONGO_DB`: sets mongodb database name.
+- `MONGO_PORT`: sets mongodb port.
+- `MONGO_HOST`: sets mongodb hostname.
+- `MONGO_CONNECTION`: sets mongodb connection type.
+
+## License
+MIT
